@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
   d3.json('https://api.rootnet.in/covid19-in/unofficial/covid19india.org').then(function (data) {
+
+    var date = new Date(data.data.lastRefreshed).toLocaleDateString('en-US', { month: 'long', day: 'numeric', hour:'numeric', minutes: 'numeric' });
+    document.getElementById('nav-text').innerHTML = 'Last updated on ' + date;
+
     var data = data.data.rawPatientData;
 
     // Clean up dates
