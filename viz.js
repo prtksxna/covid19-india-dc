@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function() {
       .dimension(genderDimension)
       .group(genderGroup);
 
-    var genderPie = new dc.PieChart('#status-pie');
-    genderPie
+    var statusPie = new dc.PieChart('#status-pie');
+    statusPie
       .width(200)
       .height(200)
       .radius(80)
