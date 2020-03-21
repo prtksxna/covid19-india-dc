@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
       d.reportedOn = dateFormatParser(d.reportedOn);
     });
 
+    // Capitalize gender
+    data.forEach(function (d) {
+      if (d.gender === 'male') d.gender = 'Male';
+      if (d.gender === 'female') d.gender = 'Female';
+    })
+
     console.log(data[9]);
 
     var ndx = crossfilter(data);
@@ -70,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var reportedBar = new dc.BarChart('#reported-bar')
     reportedBar
-      .width(800)
+      .width(760)
       .height(200)
       .dimension(dateDimension)
       .group(dateGroup)
@@ -82,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
         ])
       )
       .y(d3.scaleLinear().domain([0,60]))
-      .xUnits(function(){return dateGroup.all().length*2;});;
+      .xUnits(function(){return dateGroup.all().length*2.2;});;
 
     var ageRow = new dc.RowChart('#age-row');
     ageRow

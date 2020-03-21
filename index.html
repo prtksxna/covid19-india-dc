@@ -9,11 +9,72 @@
     <script src="dc.min.js" charset="utf-8"></script>
 
     <script src="viz.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style media="screen">
+      g.deselected,
+      rect.deselected {
+        opacity: 0.3;
+      }
+    </style>
   </head>
   <body>
-    <div id="gender-pie"></div>
-    <div id="status-pie"></div>
-    <div id="age-row"></div>
-    <div id="reported-bar"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">COVID-19 India Dimensional Data</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.covid19india.org/">Tracker</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://cluster.covid19india.org/">Cluster Map</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://t.me/covid19indiaops">Telegram group</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://docs.google.com/spreadsheets/d/1DqODDqNYxqEc2JhzTYuuWc7zMD2GEKR0Xz94D1gW0ek/edit#gid=0">Database</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/prtksxna/covid19-india-dc">Github</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <br><br><br><br>
+
+    <div class="container">
+      <p class="lead">
+        COVID-19 data from India. Click or drag on the charts below to filter and drill down.
+      </p>
+      <div class="row">
+        <div class="col-sm-8">
+          <h6>Number of reports</h6>
+          <div id="reported-bar"></div>
+        </div>
+
+        <div class="col-sm-4">
+          <h6>Status</h6>
+          <div id="status-pie"></div>
+
+          <br><br>
+
+          <h6>Gender</h6>
+          <div id="gender-pie"></div>
+
+          <br><br>
+
+          <h6>Age group</h6>
+          <div id="age-row"></div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
