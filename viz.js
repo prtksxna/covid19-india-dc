@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     var ageGroup = ageDimension.group();
 
-    console.log(ageGroup.all());
+    var stateDimension = ndx.dimension(d => d.state);
+    var stateGroup = stateDimension.group();
 
     var genderDimension = ndx.dimension(d => d.gender );
     var genderGroup = genderDimension.group();
@@ -97,10 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
       .dimension(ageDimension)
       .group(ageGroup)
       .elasticX(true)
-      /*.y(d3.scaleOrdinal().domain[
-        'Unknown',
-        'Under 10'
-      ])*/
       .ordering(function(d) {
         return d.key;
         if( d.key === "Unknown") return 1;
@@ -109,6 +106,31 @@ document.addEventListener("DOMContentLoaded", function() {
         if( d.key === "Between 20 to 30") return 4;
 
       });
+
+      console.log();
+
+      var map = new dc.GeoChoroplethChart('#map');
+      map
+        .width(760)
+        .height(700)
+        .dimension(stateDimension)
+        .group(stateGroup)
+        .colors(d3.scaleQuantize().range(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"]))
+        .colorDomain([0, stateGroup.top(1)[0].value])
+        .overlayGeoJson(statesData.features,"state",function (d) {
+          return d.properties["NAME_1"];
+        })
+        .projection(d3.geoMercator()
+          .scale(1000)
+          .translate([-1100, 700])
+        )
+        .title( function (d) {
+          return d.key + ": " + d.value;
+        })
+        .valueAccessor(function (d) {
+          return d.value;
+        });
+
 
     dc.renderAll();
 
