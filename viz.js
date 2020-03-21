@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
   d3.json('https://api.rootnet.in/covid19-in/unofficial/covid19india.org').then(function (data) {
 
     var date = new Date(data.data.lastRefreshed).toLocaleDateString('en-US', { month: 'long', day: 'numeric', hour:'numeric', minutes: 'numeric' });
-    document.getElementById('nav-text').innerHTML = 'Last updated on ' + date;
+    document.getElementById('loading').innerHTML = 'Last updated on ' + date;
 
     var data = data.data.rawPatientData;
 
@@ -111,32 +111,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
       });
 
-      console.log();
+    var map = new dc.GeoChoroplethChart('#map');
+    map
+      .width(760)
+      .height(700)
+      .dimension(stateDimension)
+      .group(stateGroup)
+      .colors(d3.scaleQuantize().range(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"]))
+      .colorDomain([0, stateGroup.top(1)[0].value])
+      .overlayGeoJson(statesData.features,"state",function (d) {
+        return d.properties["NAME_1"];
+      })
+      .projection(d3.geoMercator()
+        .scale(1000)
+        .translate([-1100, 700])
+      )
+      .title( function (d) {
+        return d.key + ": " + d.value;
+      })
+      .valueAccessor(function (d) {
+        return d.value;
+      });
 
-      var map = new dc.GeoChoroplethChart('#map');
-      map
-        .width(760)
-        .height(700)
-        .dimension(stateDimension)
-        .group(stateGroup)
-        .colors(d3.scaleQuantize().range(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"]))
-        .colorDomain([0, stateGroup.top(1)[0].value])
-        .overlayGeoJson(statesData.features,"state",function (d) {
-          return d.properties["NAME_1"];
-        })
-        .projection(d3.geoMercator()
-          .scale(1000)
-          .translate([-1100, 700])
-        )
-        .title( function (d) {
-          return d.key + ": " + d.value;
-        })
-        .valueAccessor(function (d) {
-          return d.value;
-        });
-
+    var count = new dc.DataCount('#count')
+    count
+      .dimension(ndx)
+      .groupAll(ndx.groupAll());
 
     dc.renderAll();
+
+    document.getElementById('reset').addEventListener('click',function () {
+      dc.filterAll();
+      dc.renderAll();
+    })
 
   })
 });

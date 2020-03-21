@@ -22,8 +22,8 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">COVID-19 India Dimensional Data</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="/">Interactive COVID-19 India Dashboard</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -46,19 +46,28 @@
             <a class="nav-link" href="https://github.com/prtksxna/covid19-india-dc">Github</a>
           </li>
         </ul>
-        <span class="navbar-text" id="nav-text" >Loading…</span>
+        <span class="navbar-text" id="nav-text" >
+          <span id="count">
+            Viweing
+            <span class="filter-count" style="color:white;font-weight:bold;"></span>
+            of
+            <span class="total-count"></span>&nbsp;&nbsp;
+          </span>
+          <button type="button" class="btn btn-primary" id="reset">Reset</button>
+        </span>
       </div>
     </nav>
 
-    <br><br>
+    <br><br><br><br>
 
     <div class="container">
       <p class="lead">
-        COVID-19 data from India. Click or drag on the charts below to filter and drill down.
+        COVID-19 data from India. <strong>Click</strong> or <strong>drag</strong> on the charts below to filter and drill down.
         <br>
         <div class="alert alert-warning" role="alert">
-            <b>NOTE:</b> Some of the data is incomplete
-      </div>
+            <b>NOTE:</b> Some of the data may be incomplete. Please see sources above.
+            <span id="loading" style="float:right;">Loading…</span>
+        </div>
         <br>
       </p>
       <div class="row">
