@@ -63,25 +63,42 @@ document.addEventListener("DOMContentLoaded", function() {
     var statusDimension = ndx.dimension(d => d.status );
     var statusGroup = statusDimension.group();
 
+    var w = window.screen.width
+    if ( w < 500 ) {
+      var smallWidth = w - 20;
+      var midWidth = w - 20;
+      var largeWidth = w - 20;
+      var mapWidth = w - 50;
+      var mapZoom = 500;
+      var mapTranslate = [-550, 350];
+    } else {
+      var smallWidth = 200;
+      var midWidth = 300;
+      var largeWidth = 760;
+      var mapWidth = 760;
+      var mapZoom = 1000;
+      var mapTranslate = [-1100, 700];
+    }
+
     var genderPie = new dc.PieChart('#gender-pie');
     genderPie
-      .width(200)
-      .height(200)
+      .width(smallWidth)
+      .height(smallWidth)
       .radius(80)
       .dimension(genderDimension)
       .group(genderGroup);
 
     var statusPie = new dc.PieChart('#status-pie');
     statusPie
-      .width(200)
-      .height(200)
+      .width(smallWidth)
+      .height(smallWidth)
       .radius(80)
       .dimension(statusDimension)
       .group(statusGroup);
 
     var reportedBar = new dc.BarChart('#reported-bar')
     reportedBar
-      .width(760)
+      .width(largeWidth)
       .height(200)
       .dimension(dateDimension)
       .group(dateGroup)
@@ -97,8 +114,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var ageRow = new dc.RowChart('#age-row');
     ageRow
-      .width(300)
-      .height(300)
+      .width(midWidth)
+      .height(midWidth)
       .dimension(ageDimension)
       .group(ageGroup)
       .elasticX(true)
@@ -113,8 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var map = new dc.GeoChoroplethChart('#map');
     map
-      .width(760)
-      .height(700)
+      .width(mapWidth)
+      .height(mapWidth)
       .dimension(stateDimension)
       .group(stateGroup)
       .colors(d3.scaleQuantize().range(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"]))
@@ -123,8 +140,8 @@ document.addEventListener("DOMContentLoaded", function() {
         return d.properties["NAME_1"];
       })
       .projection(d3.geoMercator()
-        .scale(1000)
-        .translate([-1100, 700])
+        .scale(mapZoom)
+        .translate(mapTranslate)
       )
       .title( function (d) {
         return d.key + ": " + d.value;

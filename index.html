@@ -7,6 +7,8 @@
     <script src="d3.min.js" charset="utf-8"></script>
     <script src="crossfilter.min.js" charset="utf-8"></script>
     <script src="dc.min.js" charset="utf-8"></script>
+    <script src="jquery.min.js" charset="utf-8"></script>
+    <script src="bootstrap.min.js" charset="utf-8"></script>
 
     <script src="india.js" charset="utf-8"></script>
     <script src="viz.js" charset="utf-8"></script>
@@ -27,7 +29,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="/">Interactive COVID-19 India Dashboard</a>
+      <a class="navbar-brand" href="/"><span class="d-none d-md-inline d-lg-inline d-xl-inline">Interactive </span>COVID-19 India Dashboard</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -71,6 +73,7 @@
         <div class="alert alert-warning" role="alert">
             <b>NOTE:</b> Some of the data may be incomplete. Please see sources above.
             <span id="loading" style="float:right;">Loading…</span>
+            <div class="clearfix">&nbsp;</div>
         </div>
         <br>
       </p>
