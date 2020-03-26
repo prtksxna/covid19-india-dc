@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", function() {
       if (d.gender === 'female') d.gender = 'Female';
     })
 
-    console.log(data[9]);
-
     var ndx = crossfilter(data);
     var all = ndx.groupAll();
 
