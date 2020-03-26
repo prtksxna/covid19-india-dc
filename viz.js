@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function() {
           new Date()
         ])
       )
-      .y(d3.scaleLinear().domain([0,60]))
+      .y(d3.scaleLinear().domain([0,dateGroup.top(1)[0].value]))
       .xUnits(function(){return dateGroup.all().length*2.2;});;
 
     var ageRow = new dc.RowChart('#age-row');
