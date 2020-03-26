@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>India COVID-19: Dimensional data</title>
+
+    <script src="res/d3.min.js" charset="utf-8"></script>
+    <script src="res/crossfilter.min.js" charset="utf-8"></script>
+    <script src="res/dc.min.js" charset="utf-8"></script>
+    <script src="res/jquery.min.js" charset="utf-8"></script>
+    <script src="res/bootstrap.min.js" charset="utf-8"></script>
+
+    <script src="res/india.js" charset="utf-8"></script>
+    <script src="viz.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="res/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style media="screen">
+      g.deselected,
+      rect.deselected {
+        opacity: 0.3;
+      }
+
+      g.state.selected path {
+        fill: #A1DA9B;
+      }
+
+      footer {
+        margin: 40px 0;
+        text-align: center;
+      }
+
+      .tools {
+        background: #292F38;
+        color: #fff;
+        border-radius: 4px;
+        text-align: right;
+        padding: 15px;
+        padding-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+
+    <br><br>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-9" style="padding:10px;">
+          <p class="lead">COVID-19 data from India. <strong>Click</strong> or <strong>drag</strong> on the charts below to filter and drill down.</p>
+        </div>
+        <div class="col-sm-3 tools">
+          <span>
+            <span id="count">
+              Viewing
+              <span class="filter-count" style="color:white;font-weight:bold;"></span>
+              of
+              <span class="total-count"></span>&nbsp;&nbsp;
+            </span>
+            <button type="button" class="btn btn-primary" id="reset">Reset</button>
+          </span>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="alert alert-warning row" role="alert">
+        <div class="col-sm-8">
+          <b>NOTE:</b> Some of the data may be incomplete. Please see sources below.
+        </div>
+        <div class="col-sm-4">
+          <span id="loading" style="float:right;">Loading…</span>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col-sm-8">
+          <h6>Number of reports</h6>
+          <div id="reported-bar"></div>
+
+          <br>
+
+          <div id="map"></div>
+        </div>
+
+        <div class="col-sm-4">
+          <h6>Status</h6>
+          <div id="status-pie"></div>
+
+          <br><br>
+
+          <h6>Gender</h6>
+          <div id="gender-pie"></div>
+
+          <br><br>
+
+          <h6>Age group</h6>
+          <div id="age-row"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <footer>
+        <a href="https://docs.google.com/spreadsheets/d/1DqODDqNYxqEc2JhzTYuuWc7zMD2GEKR0Xz94D1gW0ek/edit#gid=0">Data</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://github.com/prtksxna/covid19-india-dc">Github</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://t.me/covid19indiaops">Telegram</a>
+      </footer>
+    </div>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43322397-2"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-43322397-2');
+  </script>
+
+  </body>
+</html>
