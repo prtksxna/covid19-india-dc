@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
       d.reportedOn = dateFormatParser(d.reportedOn);
     });
 
+    var data = data.filter(function (r) {
+      return r.state !== undefined;
+    })
+
     // Capitalize gender
     data.forEach(function (d) {
       if (d.gender === 'male') d.gender = 'Male';
